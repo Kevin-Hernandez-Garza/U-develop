@@ -25,9 +25,39 @@ const db = mysql.createConnection(
 
 
 // returning all data from the candidates table 
-db.query(`SELECT * FROM candidates`, (err, rows) => {
-    console.log(rows);
-});
+// db.query(`SELECT * FROM candidates`, (err, rows) => {
+//     console.log(rows);
+// });
+
+//returning a single candidate using their primary key/id
+// db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
+//     if(err) {
+//         console.log(err);
+//     } 
+//     console.log(row);
+// });
+
+// delete candidate 
+// db.query(`DELETE FROM candidates WHERE id = ?`, 1, (err, result) => {
+//     if(err) {
+//         console.log(err);
+//     }
+//     console.log(result);
+// });
+
+// create candidate
+// // sql command 
+// const sql = `INSERT INTO candidates (id, first_name, last_name, industry_connected) 
+// VALUES (?,?,?,?)`;
+// // sql parameters
+// const params = [1, 'Ronald', 'Firbank', 1];
+
+// db.query(sql, params, (err, result) => {
+//     if(err) {
+//         console.log(err);
+//     }
+//     console.log(result);
+// });
 
 
 // Default response for any other request (Not Found) always make sure this is the last route
