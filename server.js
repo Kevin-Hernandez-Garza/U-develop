@@ -28,7 +28,11 @@ const db = mysql.createConnection(
 
 // get all candidates wrapped in a express route
 app.get('/api/candidates', (req,res) => {
-    const sql = `SELECT * FROM candidates`;
+    const sql = `SELECT candidates.*, parties.name
+                AS party_name
+                FROM candidates
+                LEFT JOIN parties
+                ON candidates.party_id = parties.id`;
 
     db.query(sql, (err, rows) => {
         // if there is an error then it will return a 500 error code, and exit the database call
@@ -46,7 +50,12 @@ app.get('/api/candidates', (req,res) => {
 
 // getting a single candidate 
 app.get('/api/candidate/:id', (req,res) => {
-    const sql = `SELECT * FROM candidates WHERE id = ?`;
+    const sql = `SELECT candidates.*, parties.name
+                AS party_name 
+                FROM candidates
+                LEFT JOIN parties
+                ON candidates.party_id = parties.id
+                WHERE candidates.id = ?`;
     const params = [req.params.id];
 
     db.query(sql, params, (err, row) => {
